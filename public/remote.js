@@ -29,7 +29,16 @@ let remoteStream;
 
 let init = async() => {
 
-    localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+    try {
+        localStream = await navigator.mediaDevices.getDisplayMedia({
+            video: {
+                cursor: "always"
+            },
+            audio: false
+        });
+    } catch (ex) {
+        console.log("Error occurred", ex);
+    }
     remoteStream = new MediaStream()
         // document.getElementById('user-1').srcObject = localStream
         //document.getElementById('user-2').srcObject = remoteStream
