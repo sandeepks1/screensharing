@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Connect to Remote Desktop</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+
+<body>
+
+
+
+
+    <div id="videos">
+        <!-- <video class="video-player" id="user-1" autoplay playsinline></video> -->
+        <video class="video-player" id="user-2" autoplay playsinline></video>
+    </div>
+
+    <div class="step">
+        <button id="create-offer">Create Offer</button>
+    </div>
+
+    <label>SDP OFFER:</label>
+    <textarea id="offer-sdp" placeholder='User 2, paste SDP offer here...'></textarea>
+
+    <div class="step">
+        <button id="create-answer">Create answer</button>
+    </div>
+
+
+    <label>SDP Answer:</label>
+    <textarea id="answer-sdp" placeholder="User 1, paste SDP answer here..."></textarea>
+
+    <div class="step">
+        <button id="add-answer">Connect to Device</button>
+    </div>
+
+</body>
+<script src='main.js'></script>
+
+</html>
