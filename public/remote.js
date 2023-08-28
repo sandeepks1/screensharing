@@ -10,12 +10,11 @@ let init = async() => {
         //document.getElementById('user-2').srcObject = remoteStream
 
     localStream.getTracks().forEach((track) => {
-        alert('Adding local track:', track)
         peerConnection.addTrack(track, localStream);
     });
 
     peerConnection.ontrack = (event) => {
-        alert('Adding remote track:', event.streams[0])
+        //  document.getElementById("config").style.display = "none";
         event.streams[0].getTracks().forEach((track) => {
             remoteStream.addTrack(track);
         });

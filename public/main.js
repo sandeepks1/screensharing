@@ -10,12 +10,12 @@ let init = async() => {
     document.getElementById('user-2').srcObject = remoteStream
 
     localStream.getTracks().forEach((track) => {
-        alert('Adding local track:', track)
         peerConnection.addTrack(track, localStream);
     });
 
     peerConnection.ontrack = (event) => {
-        alert('Adding remote track:', event.streams[0])
+        //document.getElementById("connection").display = "none";
+        openFullscreen()
         event.streams[0].getTracks().forEach((track) => {
             remoteStream.addTrack(track);
         });
@@ -67,3 +67,15 @@ init()
 document.getElementById('create-offer').addEventListener('click', createOffer)
 document.getElementById('create-answer').addEventListener('click', createAnswer)
 document.getElementById('add-answer').addEventListener('click', addAnswer)
+
+function openFullscreen() {
+    var elem = document.getElementById("user-2");
+
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+        elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+        elem.msRequestFullscreen();
+    }
+}
