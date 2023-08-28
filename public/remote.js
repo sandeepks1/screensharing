@@ -1,4 +1,29 @@
-let peerConnection = new RTCPeerConnection()
+let peerConnection = new RTCPeerConnection({
+    iceServers: [{
+            urls: "stun:stun.relay.metered.ca:80",
+        },
+        {
+            urls: "turn:a.relay.metered.ca:80",
+            username: "835c5389b98d89346569c234",
+            credential: "TFEyZVKp00MJOBNJ",
+        },
+        {
+            urls: "turn:a.relay.metered.ca:80?transport=tcp",
+            username: "835c5389b98d89346569c234",
+            credential: "TFEyZVKp00MJOBNJ",
+        },
+        {
+            urls: "turn:a.relay.metered.ca:443",
+            username: "835c5389b98d89346569c234",
+            credential: "TFEyZVKp00MJOBNJ",
+        },
+        {
+            urls: "turn:a.relay.metered.ca:443?transport=tcp",
+            username: "835c5389b98d89346569c234",
+            credential: "TFEyZVKp00MJOBNJ",
+        },
+    ],
+});
 let localStream;
 let remoteStream;
 

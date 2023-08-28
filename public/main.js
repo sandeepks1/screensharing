@@ -1,10 +1,44 @@
-let peerConnection = new RTCPeerConnection()
+let peerConnection = new RTCPeerConnection({
+    iceServers: [{
+            urls: "stun:stun.relay.metered.ca:80",
+        },
+        {
+            urls: "turn:a.relay.metered.ca:80",
+            username: "835c5389b98d89346569c234",
+            credential: "TFEyZVKp00MJOBNJ",
+        },
+        {
+            urls: "turn:a.relay.metered.ca:80?transport=tcp",
+            username: "835c5389b98d89346569c234",
+            credential: "TFEyZVKp00MJOBNJ",
+        },
+        {
+            urls: "turn:a.relay.metered.ca:443",
+            username: "835c5389b98d89346569c234",
+            credential: "TFEyZVKp00MJOBNJ",
+        },
+        {
+            urls: "turn:a.relay.metered.ca:443?transport=tcp",
+            username: "835c5389b98d89346569c234",
+            credential: "TFEyZVKp00MJOBNJ",
+        },
+    ],
+});
 let localStream;
 let remoteStream;
 
 let init = async() => {
 
-    localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+    try {
+        localStream = await navigator.mediaDevices.getDisplayMedia({
+            video: {
+                cursor: "always"
+            },
+            audio: false
+        });
+    } catch (ex) {
+        console.log("Error occurred", ex);
+    }
     remoteStream = new MediaStream()
         // document.getElementById('user-1').srcObject = localStream
     document.getElementById('user-2').srcObject = remoteStream
